@@ -2,7 +2,7 @@ const User = require('../models').User;
 
 module.exports = {
   create(req, res) {
-    return Todo
+    return User
       .create({
         username: req.body.username,
         first_name: req.body.first_name,
@@ -14,3 +14,7 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 };
+
+
+
+      

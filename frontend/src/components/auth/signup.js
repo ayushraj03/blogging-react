@@ -57,6 +57,27 @@ export default function SignIn() {
 
   const [passone, setPassone]= useState("")
   const [passtwo, setPasstwo]= useState("")
+
+  const [firstname, setfirstname]= useState("")
+  const [lastname, setLastname]= useState("")
+  const [usertname, setUsername]= useState("")
+  const [email, setEmail]= useState("")
+
+  function handleFirstname(e) {
+    let val = e.target.value;
+    setfirstname(val)
+}
+function handleLastname(e) {
+    let val = e.target.value;
+    setLastname(val)
+}
+
+function handleUsername(e) {
+    let val = e.target.value;
+    setUsername(val)
+}
+  
+
   
   function handleEmailChange(e) {
         let val = e.target.value;
@@ -69,17 +90,35 @@ export default function SignIn() {
     setPasstwo(val)
 }
 
+function handleEmail(e) {
+    let val = e.target.value;
+    setEmail(val)
+}
+
 function validate(e) {
 
     e.preventDefault()
-    fetch("http://localhost:8000/login")
-      .then((res) => res.json())
-      .then((data) => console.log(data.message));
-    if (passone === passtwo){
+    // fetch("http://localhost:8000/login")
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data.message));
 
+
+    var valid = false;
+
+    // if (passwords match) and if (fields are not -> "") => valid = true
+
+    if(firstname === "" ||  lastname === "" || username ==="" || email === ""){
         
+    }else{
+        if(passone === passtwo){
+            valid = true;
+        }
+    }
+
+    if (valid){
+        console.log('succsss')
     } else  {
-        
+        console.log("not allowed")
             alert("Form has errors.")
          
     }
@@ -97,6 +136,43 @@ function validate(e) {
           Sign Up
         </Typography>
         <form className={classes.form} noValidate>
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="username Address"
+            name="username"
+            autoComplete="username"
+            autoFocus
+            onChange={handleUsername}
+          />
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="firstname"
+            label="firstname Address"
+            name="firstname"
+            autoComplete="firstname"
+            autoFocus
+            onChange={handleFirstname}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="lastname"
+            label="lastname Address"
+            name="lastname"
+            autoComplete="lastname"
+            autoFocus
+            onChange={handleLastname}
+          />
+          
           <TextField
             variant="outlined"
             margin="normal"
@@ -107,6 +183,7 @@ function validate(e) {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleEmail}
           />
           <TextField
             variant="outlined"
