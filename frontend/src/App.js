@@ -1,24 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
-//this is for testing
+import Signup from './components/auth/signup'
+import SignIn from './components/auth/signin'
+import Home from './components/Home'
+import {useState} from 'react'
+
 function App() {
+
+  const [isAuthenticated, setisAuthenticated] = useState(false)
+  var landingPage = isAuthenticated ? <Home /> : <SignIn />
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p> TEST TEST TEST </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+    {landingPage}
     </div>
   );
 }
