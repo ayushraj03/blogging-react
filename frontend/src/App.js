@@ -8,7 +8,7 @@ import {useState} from 'react'
 function App() {
 
   const [isAuthenticated, setisAuthenticated] = useState(false)
-  var landingPage = isAuthenticated ? <Home /> : <SignIn />
+  var landingPage = isAuthenticated ? <Home /> : <Signup />
   return (
     <div className="App">
       
