@@ -13,6 +13,14 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useState } from "react";
+import Home from "../Home";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Linkk,
+} from "react-router-dom";
 
 function Copyright() {
   return (
@@ -54,7 +62,7 @@ export default function SignIn() {
   const classes = useStyles();
 
   //this.handleEmailChange = this.handleEmailChange.bind(this);
-
+  const [isAuth, setAuth] = useState("");
   const [pass, setPass] = useState("");
   const [email, setEmail] = useState("");
   const [hasError, sethasError] = useState(false);
@@ -99,7 +107,10 @@ export default function SignIn() {
 
             if (x["message"] === "success") {
               console.log("redirect to login home");
+
+              setAuth(true);
             } else {
+              setAuth(false);
               console.log("setting hasError");
               sethasError(true);
             }
@@ -123,64 +134,69 @@ export default function SignIn() {
   } else {
     errMsg = "";
   }
+  if (isAuth) {
+    return <Home />;
+  }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign Up
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            onChange={handleEmail}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={handlePass}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+    <Router>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign Up
+          </Typography>
+          <form className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={handleEmail}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={handlePass}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
 
-          <p style={{ color: "red" }}>{errMsg}</p>
+            <p style={{ color: "red" }}>{errMsg}</p>
 
-          <Button
-            onClick={validate}
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+            <Button
+              onClick={validate}
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign In
+            </Button>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
+    </Router>
   );
 }
