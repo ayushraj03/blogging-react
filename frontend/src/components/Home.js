@@ -6,8 +6,9 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <CreatePost />
-        <Post />
+        <h1>welcome to the home page</h1>
+        {/* <CreatePost />
+        <Post /> */}
       </div>
     );
   }
