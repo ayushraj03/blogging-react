@@ -16,7 +16,9 @@
   },
   "devDependencies": {},
   "scripts": {
+    "build": "react-scripts build",
     "start": "react-scripts start",
+    "eject": "react-scripts eject",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
